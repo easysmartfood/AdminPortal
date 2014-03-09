@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>Admin Portal</title>
+    
+    
+
+    <!-- Bootstrap core CSS -->
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="dist/css/dashboard.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  <style id="holderjs-style" type="text/css"></style>
+  
+ <style>
+  /* Badger
+------------------------- */
+
+[class*="badger"] {
+    position: relative;
+    margin: 15px 0 0 115px;
+    padding: 39px 19px 14px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+[class*="badger"]:after {
+    content: attr(data-badger);
+    position: absolute;
+    top: 0;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: bold;
+    background: #999;
+    color: #fff;
+}
+
+[class*="table table-striped"]{
+	font-size: 12px;
+}
+
+.badger-left:after {
+    left: 0;
+    border-radius: 6px 0 6px 0;
+}
+
+.badger-right:after {
+    right: 0;
+    border-radius: 0 6px 0 6px;
+}
+
+.badger-danger:after {
+    background: #d9534f;
+}
+
+.badger-warning:after {
+    background: #f0ad4e;
+}
+
+.badger-success:after {
+    background: #5cb85c;
+}
+
+.badger-info:after {
+    background: #5bc0de;
+}
+
+.badger-inverse:after {
+    background: #222;
+}
+</style> 
+  
+  </head>
+
+  <body style="" onload="getUrlData()">
+ 
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">EasySmartFood</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="index.html">Overview</a></li>
+            <li><a href="vieworders.html">View Orders</a></li>
+            <li><a href="viewrestaurants.html">View Restaurants</a></li>
+            <li><a href="#">Add Restaurant</a></li>
+            <li class="active"><a href="viewfooditems.html">View Food Items</a></li>
+            <li><a href="addfooditem.html">Add Food Items</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nav item</a></li>
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+            <li><a href="">More navigation</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+          </ul>
+        </div>
+    
+        <div class="container">
+        
+         
+	<div class="row">
+		<h2 class="sub-header1">FoodItem Detail</h2>
+		<div class="row">
+  	<!-- 	<div class="col-xs-12 col-md-8"></div>  -->
+  	<!--     <div class="col-xs-6 col-md-4"></div> -->
+  	<!-- 	<div class="col-xs-6 col-md-4"></div> -->
+		</div>
+		
+        
+        <div class="badger-left" data-badger="Summary">
+         <div class="table-responsive">
+            <button id="saveFoodItem" type="submit" class="btn btn-primary">Save FoodItem</button>
+            <table id="foodItemTable" class="table table-striped">
+              <thead>
+                <tr>
+                  <th>FoodItem #</th>
+                  <th>Name</th>
+                  <th>Visible</th>
+                  <th>Featured</th>
+                  <th>Restaurant Uuid</th>
+                  <th>Restaurant Name</th>
+                  <th>Sale Price</th>
+                  <th>Min Order Eligible</th>
+                </tr>
+              </thead>
+              <tbody>
+          
+              </tbody>
+            </table>
+          </div>
+        
+		</div>
+
+<div class="badger-right badger-info" data-badger="Cost">
+         <div class="table-responsive">
+            <table id="foodItemTable1" class="table table-striped">
+              <thead>
+                <tr>
+                   <th>Cost Price</th>
+                  <th>Retail Price</th>
+                  <th>Bulk Price</th>
+                  <th>Subscription Price</th>
+                  <th>Min Qty</th>
+                  <th>Max Qty</th>
+                  <th>Bulk Qty</th>
+                </tr>
+              </thead>
+              <tbody>
+          
+              </tbody>
+            </table>
+          </div>
+</div> 
+
+<div class="badger-left badger-danger" data-badger="Food Details">
+  <div class="table-responsive">
+            <table id="foodItemTable2" class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Cuisine</th>
+                  <th>Food Category</th>
+                  <th>Popular</th>
+                  <th>Food Type</th>
+                  <th>Food Time Category</th>
+                  <th>Primary Image</th>
+
+                </tr>
+              </thead>
+              <tbody>
+          
+              </tbody>
+            </table>
+          </div>
+</div>
+
+<div class="badger-right badger-warning" data-badger="Discounts">
+ <div class="table-responsive">
+            <table id="foodItemTable3" class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Discount %</th>
+                  <th>Discount Code</th>
+                  <th>Discount Amt</th>
+                  <th>Tax Class</th>
+                  <th>Inventory</th>
+                </tr>
+              </thead>
+              <tbody>
+          
+              </tbody>
+            </table>
+          </div>
+</div>
+
+<div class="badger-left badger-success" data-badger="Images">
+<div class="table-responsive">
+            <table id="foodItemTable4" class="table table-striped">
+              <thead>
+                <tr>
+                <th>Image1</th>
+                  <th>Image2</th>
+                  <th>Image3</th>
+                  <th>Image4</th>
+                  <th>Image5</th>
+                </tr>
+              </thead>
+              <tbody>
+          
+              </tbody>
+            </table>
+          </div>
+</div>
+
+<div class="badger-right badger-inverse" data-badger="Other">
+<div class="table-responsive">
+            <table id="foodItemTable5" class="table table-striped">
+              <thead>
+                <tr>
+                 <th>Comments</th>
+                </tr>
+              </thead>
+              <tbody>
+          
+              </tbody>
+            </table>
+          </div>
+</div>
+        
+        
+	</div>
+</div>
+        
+        
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<!--          <h1 class="page-header">Dashboard</h1> -->  
+
+
+       
+        </div>
+      </div>
+    </div>
+    
+    <!-- Hidden Fields -->
+    <input type="hidden" name="orderJson" value="">
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <script src="dist/js/docs.min.js"></script>
+    <script src="dist/js/bootstrap-paginator.min.js"></script>
+    <script type="text/javascript" src="dist/js/jquery.tablesorter.js"></script> 
+    <script type="text/javascript" src="dist/js/jquery.tablesorter.pager.js"></script> 
+    <script type="text/javascript" src="dist/js/jquery.dataTables.js"></script> 
+     <script src="dist/js/jquery-ui.js"></script>
+    <script>
+    jQuery.browser = {};
+    (function () {
+        jQuery.browser.msie = false;
+        jQuery.browser.version = 0;
+        if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+            jQuery.browser.msie = true;
+            jQuery.browser.version = RegExp.$1;
+        }
+    })();
+    </script>
+    <script>
+    var foodItemJsonObj;
+    var corderStatus;
+    function getParameter(paramName) {
+        var searchString = window.location.search.substring(1), i, val, params = searchString.split("&");
+
+        for ( i = 0; i < params.length; i++) {
+            val = params[i].split("=");
+            if (val[0] == paramName) {
+                return val[1];
+            }
+        }
+        return null;
+    }
+
+    function getUrlData() {
+        var foodUuid = getParameter("foodUuid");
+
+    
+        $.ajax({  
+            type: "GET",  
+      //      url: "http://1.easysmartfood.appspot.com/order?orderuuid=9bea5b4f-a6ea-493f-8098-722d35feedf8",
+       //     url:"https://api.mongolab.com/api/1/databases/order/collections/order?apiKey=kdBn8eE1V6vyPoavaLt8qbgpiPSY2IjL&q={%22orderUuid%22:%229bea5b4f-a6ea-493f-8098-722d35feedf8%22}", 		
+              url:"https://api.mongolab.com/api/1/databases/fooditems/collections/fooditems?apiKey=S2fx57xyaqcVRY381V3RjkXo62hw9qbp&q={\"foodUuid\":\"" + foodUuid + "\"}",
+    	//	   url: "http://1.easysmartfood.appspot.com/order?orderuuid=" + foodUuid,  
+            dataType: "json",  
+        //    async: false,
+            success: function(data){  
+          //  	alert(data);
+              // we have the response  
+           //   alert(data.orderStatus);
+         //     var foo = $("#dialog").dialog({title:orderuuid});
+          //    foo.dialog("option","title",data);
+              foodItemJsonObj=data[0];
+           //   $('#orderJson').val(JSON.stringify(data));    
+           //   var rid = $("#orderJson").val();
+            //  alert(rid);
+          
+              var tr;
+              tr = $('<tr/>');
+                tr.append("<td>" + foodUuid + "</td>");
+                tr.append("<td><input type='text' id='foodName' value='" + data[0].name + "'/></td>");
+           //     tr.append("<td> <select id='Visible' name=\"IsVisible\" value='" + data[0].visible + "'" + 
+           //     		  " > <option value=\"Yes\">Yes</option> <option value=\"No\">No</option> </select> "
+			//	 + "</td>");
+           
+              // alert(data[0].visible);
+                
+                tr.append("<td> <select id='Visible' name=\"IsVisible\">"  + "<option value=\"" + data[0].visible + "\" selected>" + data[0].visible  +
+              		  "</option><option value=\"Yes\">Yes</option> <option value=\"No\">No</option> </select> "
+				 + "</td>");
+               // tr.append("<td>" + data[0].visible + "</td>");
+               tr.append("<td> <select id='Featured' name=\"IsFeatured\">"  + "<option value=\"" + data[0].featured + "\" selected>" + data[0].featured  +
+              		  "</option><option value=\"Yes\">Yes</option> <option value=\"No\">No</option> </select> "
+				 + "</td>");
+            //    tr.append("<td>" + data[0].featured + "</td>");
+                tr.append("<td>" + data[0].restaurantUuid + "</td>");
+                tr.append("<td>" + data[0].restaurantName + "</td>");
+                
+                tr.append("<td><input type='text' id='salePrice' value='" + data[0].salePrice + "'/></td>");
+         //       tr.append("<td>" + data[0].salePrice + "</td>");
+         
+                tr.append("<td> <select id='MinOrderEligible' name=\"IsMinOrderEligible\">"  + "<option value=\"" + data[0].minOrderEligible + "\" selected>" + data[0].minOrderEligible  +
+              		  "</option><option value=\"Yes\">Yes</option> <option value=\"No\">No</option> </select> "
+				 + "</td>");
+           //     tr.append("<td>" + data[0].minOrderEligible + "</td>");
+
+
+              $("#foodItemTable").append(tr);
+              
+              var tr1;
+              tr1 = $('<tr/>');
+
+              tr1.append("<td>" + data[0].costPrice + "</td>");
+              tr1.append("<td>" + data[0].retailPrice + "</td>");
+              tr1.append("<td>" + data[0].bulkPrice + "</td>");
+              tr1.append("<td>" + data[0].subscriptionPrice + "</td>");
+              tr1.append("<td>" + data[0].minQty + "</td>");
+              tr1.append("<td>" + data[0].maxQty + "</td>");
+              tr1.append("<td>" + data[0].bulkQty + "</td>");
+              $("#foodItemTable1").append(tr1);
+              
+      		
+              var tr2;
+              tr2 = $('<tr/>');
+             // tr2.append("<td>" + data[0].cuisine + "</td>");
+              
+              
+              tr2.append("<td> <select id='cuisine' name=\"cuisine\">"  + "<option value=\"" + data[0].cuisine + "\" selected>" + data[0].cuisine  +
+              		"</option><option value=\"Indian\">Indian</option><option value=\"Chinese\">Chinese</option><option value=\"Arabian\">Arabian</option><option value=\"Malabar\">Malabar</option>" +	
+  					"<option value=\"North Indian\">North Indian</option><option value=\"Western\">Western</option></select> "
+				 + "</td>");
+              
+              tr2.append("<td> <select id='FoodCategory' name=\"FoodCategory\">"  + "<option value=\"" + data[0].foodCategory + "\" selected>" + data[0].foodCategory  +
+                		"</option><option value=\"Veg\">Veg</option><option value=\"Non Veg\">Non Veg</option><option value=\"Beverages\">Beverages</option>" +	
+    					"</select> "
+  				 + "</td>");
+              
+            //  tr2.append("<td>" + data[0].foodCategory + "</td>");
+            
+              tr2.append("<td> <select id='Popular' name=\"Popular\">"  + "<option value=\"" + data[0].popular + "\" selected>" + data[0].popular  +
+              		  "</option><option value=\"Yes\">Yes</option> <option value=\"No\">No</option> </select> "
+				 + "</td>");
+            //  tr2.append("<td>" + data[0].popular + "</td>");
+            
+              tr2.append("<td> <select id='FoodCategory' name=\"FoodCategory\">"  + "<option value=\"" + data[0].foodType + "\" selected>" + data[0].foodType  +
+                		"</option><option value=\"Starters\">Starters</option><option value=\"Main Course\">Main Course</option><option value=\"Drinks\">Drinks</option>" +	
+    					"</select> "
+  				 + "</td>");
+              
+             // tr2.append("<td>" + data[0].foodType + "</td>");
+           //   tr2.append("<td>" + data[0].foodTimeCategory + "</td>");
+              
+              tr2.append("<td> <select id='FoodTimeCategory' name=\"FoodTimeCategory\">"  + "<option value=\"" + data[0].foodTimeCategory + "\" selected>" + data[0].foodTimeCategory  +
+                		"</option><option value=\"All Day\">All Day</option><option value=\"Lunch\">Lunch</option><option value=\"Dinner\">Dinner</option><option value=\"Snacks\">Snacks</option>" +	
+    					"</select> "
+  				 + "</td>");
+              
+              tr2.append("<td><input type='text' id='thumbnailImage' value='" + data[0].thumbnailImage + "'/></td>");
+          //    tr2.append("<td>" + data[0].thumbnailImage + "</td>");
+              $("#foodItemTable2").append(tr2);
+              
+              
+      		
+              var tr3;
+              tr3 = $('<tr/>');
+              tr3.append("<td><input type='text' id='discountPercent' value='" + data[0].discountPercent + "'/></td>");
+              tr3.append("<td><input type='text' id='discountCode' value='" + data[0].discountCode + "'/></td>");
+              tr3.append("<td><input type='text' id='discountAmt' value='" + data[0].discountAmt + "'/></td>");
+
+              tr3.append("<td> <select id='taxClass' name=\"taxClass\">"  + "<option value=\"" + data[0].taxClass + "\" selected>" + data[0].taxClass  +
+              		"</option><option value=\"default\">default</option>" +	
+  					"</select> ");
+              tr3.append("<td><input type='text' id='inventory' value='" + data[0].inventory + "'/></td>");
+
+              
+              
+             
+
+              $("#foodItemTable3").append(tr3);
+      
+              
+              
+            },  
+            error: function(e){  
+              alert('Error121212: ' + e);  
+            }  
+            
+            
+            
+          
+            
+            
+      //    });
+        
+    }).done(function(){
+    	
+    //	alert("After content changed");
+    	
+    //	jQuery('#orderStatus').on('input', function() {
+        //  	alert($('#orderStatus').val());
+          // do your stuff
+    //  	}); 
+    	
+    //	$("#orderStatus").change(function() {// alert($('#orderStatus').val()); 
+   // 	corderStatus = $('#orderStatus').val();  });
+    	
+    	
+    });
+        
+    }
+    
+//});
+	
+    
+      	     //   $("#orderTable").tablesorter({sortList: [[5,1]]}) 
+      	  //    $("#orderTable").tablesorter({widthFixed: true, widgets: ['zebra']}) 
+      	   //     .tablesorterPager({container: $("#pager")}); 
+      	//    } 
+      	
+    $(function() {
+    	
+    	var gfoodUuid;
+    	var gfoodDisplayName;
+    	var gfoodPrice;
+    	var gRestaurant;
+    	var gQuantity;
+    	
+    	$("#saveFoodItem").click(function(){
+    		
+    		foodItemJsonObj.name=$('#foodName').val();
+    		alert($('#foodName').val());
+    		foodItemJsonObj.visible=$('#Visible  option:selected').val();
+    		foodItemJsonObj.featured=$('#Featured option:selected').val();
+    		foodItemJsonObj.salePrice=$('#salePrice').val();
+    		foodItemJsonObj.minOrderEligible=$('#MinOrderEligible option:selected').val();
+    		
+
+
+    		
+    		
+    		foodItemJsonObj.cuisine=$('#cuisine').val();
+    		foodItemJsonObj.foodCategory=$('#FoodCategory').val();
+    		foodItemJsonObj.popular=$('#Popular').val();
+    		foodItemJsonObj.foodType=$('#FoodType').val();
+    		foodItemJsonObj.foodTimeCategory=$('#FoodTimeCategory').val();
+    		foodItemJsonObj.thumbnailImage=$('#thumbnailImage').val();
+    		
+    		foodItemJsonObj.discountPercent=$('#discountPercent').val();
+    		foodItemJsonObj.discountCode=$('#discountCode').val();
+    		foodItemJsonObj.discountAmt=$('#discountAmt').val();
+    		foodItemJsonObj.taxClass=$('#taxClass').val();
+    		foodItemJsonObj.inventory=$('#inventory').val();
+    		
+    		var putData = JSON.stringify(foodItemJsonObj);
+    		alert(putData);
+    		
+    		//alert(postData);
+    		$.ajax({
+    			  url: 'https://api.mongolab.com/api/1/databases/fooditems/collections/fooditems?apiKey=S2fx57xyaqcVRY381V3RjkXo62hw9qbp' + "&q={\"foodUuid\":\"" + getParameter("foodUuid") + "\"}",
+    			  type: 'PUT',
+    			  dataType: "json",
+    			  crossDomain: true,
+    			  contentType: "application/json; charset=utf-8",
+    			  data: putData,
+    			  success: function(data) {
+    			    alert('Food Item Update Saved');
+    			    location.reload();
+    			  }
+    			});
+    		alert(postData);
+    		
+    	});
+    		
+    	});
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+ 
+      	
+    </script>
+
+</body></html>

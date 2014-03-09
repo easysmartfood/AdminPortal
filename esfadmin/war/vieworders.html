@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>Admin Portal</title>
+    
+    
+
+    <!-- Bootstrap core CSS -->
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="dist/css/dashboard.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  <style id="holderjs-style" type="text/css"></style>
+  
+  
+  </head>
+
+  <body style="">
+  
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">EasySmartFood</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="index.html">Overview</a></li>
+            <li class="active"><a href="vieworders.html">View Orders</a></li>
+            <li><a href="#">Add an Order</a></li>
+            <li><a href="#">Search Orders</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nav item</a></li>
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+            <li><a href="">More navigation</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+          </ul>
+        </div>
+    
+        
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<!--          <h1 class="page-header">Dashboard</h1> -->  
+
+         
+          <h2 class="sub-header">View Orders</h2>
+          <div class="table-responsive">
+
+
+           
+          
+            <table id="orderTable" class="table table-striped">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Status</th>
+                  <th>Agent</th>
+                  <th>Amount</th>
+                  <th>Create Date</th>
+                </tr>
+              </thead>
+              <tbody>
+          
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <script src="dist/js/docs.min.js"></script>
+    <script src="dist/js/bootstrap-paginator.min.js"></script>
+    <script type="text/javascript" src="dist/js/jquery.tablesorter.js"></script> 
+    <script type="text/javascript" src="dist/js/jquery.tablesorter.pager.js"></script> 
+    <script type="text/javascript" src="dist/js/jquery.dataTables.js"></script> 
+  <script>
+    $.ajax({  
+        type: "GET",  
+        url: "https://api.mongolab.com/api/1/databases/order/collections/order?apiKey=kdBn8eE1V6vyPoavaLt8qbgpiPSY2IjL&s={%22createDate%22:-1}&l=1000",  
+        dataType: "json",  
+        success: function(data){  
+          // we have the response  
+          //alert(data);
+          var tr;
+          for (var i = 0; i < data.length; i++) {
+              tr = $('<tr/>');
+              tr.append("<td>" + "<a href=" + "\"" + "\\displayorder.html?orderuuid=" + data[i].orderUuid  + "\">" + data[i].orderUuid + "</a>" + "</td>");
+              tr.append("<td>" + data[i].orderdata.userData.firstName + " " + data[i].orderdata.userData.lastName + "</td>");
+              tr.append("<td>" + data[i].orderdata.orderStatus+ "</td>");
+              tr.append("<td>" + data[i].orderdata.agentData.agentID+ "</td>");
+            //  alert("Server said123:\n '" + data[i].orderdata.orderStatus + "'");  
+              tr.append("<td>" + data[i].orderdata.priceSummaryData.grandTotal + "</td>");  
+              tr.append("<td>" + data[i].createDate+ "</td>");
+          //    alert("Server said123:\n '" + data[i].orderUuid + "'"); 
+
+              $('table').append(tr);
+          }
+          $('#orderTable').dataTable( {
+        	  "aaSorting": [ [5,'desc'] ],"sPaginationType": "full_numbers"
+                  		} );
+          
+       //   $(document).ready(function() 
+        //    	    { 
+          	  
+         //     	  $('#orderTable').dataTable( {
+          //    			"sPaginationType": "full_numbers"
+           //   		} );
+           // 	    }
+         
+      //    	); 
+        },  
+        error: function(e){  
+          alert('Error121212: ' + e);  
+        }  
+      });
+    </script>
+    <script>
+    jQuery.browser = {};
+    (function () {
+        jQuery.browser.msie = false;
+        jQuery.browser.version = 0;
+        if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+            jQuery.browser.msie = true;
+            jQuery.browser.version = RegExp.$1;
+        }
+    })();
+    </script>
+    <script>
+   
+    	
+      	     //   $("#orderTable").tablesorter({sortList: [[5,1]]}) 
+      	  //    $("#orderTable").tablesorter({widthFixed: true, widgets: ['zebra']}) 
+      	   //     .tablesorterPager({container: $("#pager")}); 
+      	//    } 
+    </script>
+
+</body></html>

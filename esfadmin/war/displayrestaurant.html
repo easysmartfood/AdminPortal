@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.ico">
+
+    <title>Admin Portal</title>
+    
+    
+
+    <!-- Bootstrap core CSS -->
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="dist/css/dashboard.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  <style id="holderjs-style" type="text/css"></style>
+  
+ <style>
+  /* Badger
+------------------------- */
+
+[class*="badger"] {
+    position: relative;
+    margin: 15px 0 0 115px;
+    padding: 39px 19px 14px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+[class*="badger"]:after {
+    content: attr(data-badger);
+    position: absolute;
+    top: 0;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: bold;
+    background: #999;
+    color: #fff;
+}
+
+[class*="table table-striped"]{
+	font-size: 12px;
+}
+
+.badger-left:after {
+    left: 0;
+    border-radius: 6px 0 6px 0;
+}
+
+.badger-right:after {
+    right: 0;
+    border-radius: 0 6px 0 6px;
+}
+
+.badger-danger:after {
+    background: #d9534f;
+}
+
+.badger-warning:after {
+    background: #f0ad4e;
+}
+
+.badger-success:after {
+    background: #5cb85c;
+}
+
+.badger-info:after {
+    background: #5bc0de;
+}
+
+.badger-inverse:after {
+    background: #222;
+}
+</style> 
+  
+  </head>
+
+  <body style="" onload="getUrlData()">
+ 
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">EasySmartFood</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search...">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+            <li><a href="index.html">Overview</a></li>
+            <li class="active"><a href="vieworders.html">View Orders</a></li>
+            <li><a href="#">Add an Order</a></li>
+            <li><a href="#">Search Orders</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nav item</a></li>
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+            <li><a href="">More navigation</a></li>
+          </ul>
+          <ul class="nav nav-sidebar">
+            <li><a href="">Nav item again</a></li>
+            <li><a href="">One more nav</a></li>
+            <li><a href="">Another nav item</a></li>
+          </ul>
+        </div>
+    
+        <div class="container">
+        
+         
+	<div class="row">
+		<h2 class="sub-header1">Order Detail</h2>
+		<div class="row">
+  	<!-- 	<div class="col-xs-12 col-md-8"></div>  -->
+  	<!--     <div class="col-xs-6 col-md-4"></div> -->
+  	<!-- 	<div class="col-xs-6 col-md-4"></div> -->
+		</div>
+		
+        
+        <div class="badger-left" data-badger="Order Status">
+         <div class="table-responsive">
+            <button id="saveOrder" type="submit" class="btn btn-primary">Save Order</button>
+            <table id="orderTable" class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Order #</th>
+                  <th>Order Status</th>
+                  <th>Created Time</th>
+                  <th>Created By</th>
+                  <th>Updated Time</th>
+                  <th>Updated By</th>
+                </tr>
+              </thead>
+              <tbody>
+          
+              </tbody>
+            </table>
+          </div>
+        
+		</div>
+
+<div class="badger-right badger-info" data-badger="Customer Data">
+         <div class="table-responsive">
+            <table id="orderTable1" class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>email</th>
+                  <th>phone</th>
+                  <th>Address Line1</th>
+                  <th>Address Line2</th>
+                  <th>Landmark</th>
+                  <th>City</th>
+            <!--      <th>State</th>  --> 
+                  <th>Postal Code</th>
+                  <th>User Type</th>
+                </tr>
+              </thead>
+              <tbody>
+          
+              </tbody>
+            </table>
+          </div>
+</div> 
+
+<div class="badger-left badger-danger" data-badger="Food Items">
+  <div class="table-responsive">
+  	        <button id="addFoodItem" type="submit" class="btn btn-primary">Add Food Item</button> 
+            <table id="orderTable2" class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Food #</th>
+                  <th>Name</th>
+                  <th>Restaurant</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+
+                </tr>
+              </thead>
+              <tbody>
+          
+              </tbody>
+            </table>
+          </div>
+</div>
+
+<div class="badger-right badger-warning" data-badger="Price">
+ <div class="table-responsive">
+            <table id="orderTable3" class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Amt before tax</th>
+                  <th>Tax Amt</th>
+                  <th>Tax %</th>
+                  <th>Delivery Charge</th>
+                  <th>Other Charges</th>
+                  <th>Discount Code</th>
+                  <th>Discount Amt</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+          
+              </tbody>
+            </table>
+          </div>
+</div>
+
+<div class="badger-left badger-success" data-badger="Agent">
+<div class="table-responsive">
+            <table id="orderTable4" class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Agent #</th>
+                  <th>Name</th>
+                  <th>Position Lat</th>
+                  <th>Position Lon</th>
+                  <th>Position Status</th>
+                  <th>Agent Comment</th>
+                </tr>
+              </thead>
+              <tbody>
+          
+              </tbody>
+            </table>
+          </div>
+</div>
+
+<div class="badger-right badger-inverse" data-badger="Other">
+<div class="table-responsive">
+            <table id="orderTable5" class="table table-striped">
+              <thead>
+                <tr>
+                  <th>IP</th>
+                  <th>IP Country</th>
+                  <th>Device</th>
+                  <th>Comments</th>
+                </tr>
+              </thead>
+              <tbody>
+          
+              </tbody>
+            </table>
+          </div>
+</div>
+        
+        
+	</div>
+</div>
+        
+        
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<!--          <h1 class="page-header">Dashboard</h1> -->  
+
+
+       
+        </div>
+      </div>
+    </div>
+    
+    <!-- Hidden Fields -->
+    <input type="hidden" name="orderJson" value="">
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <script src="dist/js/docs.min.js"></script>
+    <script src="dist/js/bootstrap-paginator.min.js"></script>
+    <script type="text/javascript" src="dist/js/jquery.tablesorter.js"></script> 
+    <script type="text/javascript" src="dist/js/jquery.tablesorter.pager.js"></script> 
+    <script type="text/javascript" src="dist/js/jquery.dataTables.js"></script> 
+     <script src="dist/js/jquery-ui.js"></script>
+    <script>
+    jQuery.browser = {};
+    (function () {
+        jQuery.browser.msie = false;
+        jQuery.browser.version = 0;
+        if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+            jQuery.browser.msie = true;
+            jQuery.browser.version = RegExp.$1;
+        }
+    })();
+    </script>
+    <script>
+    var orderJsonObj;
+    var corderStatus;
+    function getParameter(paramName) {
+        var searchString = window.location.search.substring(1), i, val, params = searchString.split("&");
+
+        for ( i = 0; i < params.length; i++) {
+            val = params[i].split("=");
+            if (val[0] == paramName) {
+                return val[1];
+            }
+        }
+        return null;
+    }
+
+    function getUrlData() {
+        var orderuuid = getParameter("orderuuid");
+
+    
+        $.ajax({  
+            type: "GET",  
+      //      url: "http://1.easysmartfood.appspot.com/order?orderuuid=9bea5b4f-a6ea-493f-8098-722d35feedf8",
+       //     url:"https://api.mongolab.com/api/1/databases/order/collections/order?apiKey=kdBn8eE1V6vyPoavaLt8qbgpiPSY2IjL&q={%22orderUuid%22:%229bea5b4f-a6ea-493f-8098-722d35feedf8%22}", 		
+              url: "http://1.easysmartfood.appspot.com/order?orderuuid=" + orderuuid,  
+            dataType: "json",  
+        //    async: false,
+            success: function(data){  
+              // we have the response  
+           //   alert(data.orderStatus);
+         //     var foo = $("#dialog").dialog({title:orderuuid});
+          //    foo.dialog("option","title",data);
+              orderJsonObj=data;
+           //   $('#orderJson').val(JSON.stringify(data));    
+           //   var rid = $("#orderJson").val();
+            //  alert(rid);
+          
+              var tr;
+              tr = $('<tr/>');
+                tr.append("<td>" + orderuuid + "</td>");
+                tr.append("<td><input type='text' id='orderStatus' value='" + data.orderStatus+ "'/></td>");
+                tr.append("<td>" + data.createTs+ "</td>");
+                tr.append("<td>" + data.createdBy+ "</td>");
+                tr.append("<td>" + data.updateTs+ "</td>");
+                tr.append("<td>" + data.updatedBy+ "</td>");
+              $("#orderTable").append(tr);
+              
+              var tr1;
+              tr1 = $('<tr/>');
+                tr1.append("<td>" + data.userData.firstName + " " + data.userData.lastName + "</td>");
+                tr1.append("<td><input type='text' id='userDataEmail' value='" + data.userData.email + "'/></td>");
+                tr1.append("<td><input type='text' id='userDataPhone' value='" + data.userData.phone + "'/></td>");
+                tr1.append("<td><input type='text' id='userDataAddress1' value='" + data.userData.address1 + "'/></td>");
+                tr1.append("<td><input type='text' id='userDataAddress2' value='" + data.userData.address2 + "'/></td>");
+                tr1.append("<td><input type='text' id='userDataLandmark' value='" + data.userData.landmark + "'/></td>");
+                tr1.append("<td>" + data.userData.city + "</td>");
+          <!--      tr1.append("<td>" + data.userData.state + "</td>"); -->
+                tr1.append("<td><input type='text' id='userDataZip' value='" + data.userData.zip + "'/></td>");
+                tr1.append("<td>" + data.userData.userType + "</td>");
+
+
+              $("#orderTable1").append(tr1);
+              
+              
+              var tr2;
+              for (var i = 0; i < data.foodItems.length; i++) {
+                  tr2 = $('<tr/>');
+                  tr2.append("<td>" + data.foodItems[i].foodUuid+ "</td>");
+                  tr2.append("<td>" + data.foodItems[i].displayName+ "</td>");
+                  tr2.append("<td>" + data.foodItems[i].restaurantName+ "</td>");
+                  tr2.append("<td><input type='text' id='foodItemsPrice" + i +  "' value='" + data.foodItems[i].price + "'/></td>");
+                  tr2.append("<td><input type='text' id='foodItemsQuantity" + i +  "' value='" + data.foodItems[i].quantity + "'/></td>");
+                  $("#orderTable2").append(tr2);
+              }
+              
+              var tr3;
+              tr3 = $('<tr/>');
+
+              tr3.append("<td>" + data.priceSummaryData.totalWithoutTax + "</td>");
+              tr3.append("<td>" + data.priceSummaryData.taxAmt + "</td>");
+              tr3.append("<td>" + data.priceSummaryData.taxPercent + "</td>");
+              tr3.append("<td>" + data.priceSummaryData.deliveryCharge + "</td>");
+              tr3.append("<td>" + data.priceSummaryData.otherCharge + "</td>");
+              tr3.append("<td>" + data.priceSummaryData.discountCode + "</td>");
+              tr3.append("<td>" + data.priceSummaryData.discountAmt + "</td>");
+              tr3.append("<td>" + data.priceSummaryData.grandTotal + "</td>");
+
+
+              $("#orderTable3").append(tr3);
+              
+              var tr4;
+              tr4 = $('<tr/>');
+
+              tr4.append("<td>" + data.agentData.agentID + "</td>");
+              tr4.append("<td>" + data.agentData.Name + "</td>");
+              tr4.append("<td>" + data.agentData.Position.Latitude + "</td>");
+              tr4.append("<td>" + data.agentData.Position.Longitude + "</td>");
+              tr4.append("<td>" + data.agentData.Position.Status + "</td>");
+              tr4.append("<td>" + data.agentData.comment + "</td>");
+
+              $("#orderTable4").append(tr4);
+              
+              
+//               for (var i = 0; i < data.length; i++) {
+//                   tr = $('<tr/>');
+//                //   tr.append("<td>" + "<a href=" + "\"" + "\\displayorder.html?orderuuid=" + data[i].orderUuid  + "\">" + data[i].orderUuid + "</a>" + "</td>");
+//                   tr.append("<td>" + data[i].userData.firstName + " " + data[i].orderdata.userData.lastName + "</td>");
+//                   tr.append("<td>" + data[i].orderStatus+ "</td>");
+//                   tr.append("<td>" + data[i].agentData.agentID+ "</td>");
+//                 //  alert("Server said123:\n '" + data[i].orderdata.orderStatus + "'");  
+//                   tr.append("<td>" + data[i].priceSummaryData.grandTotal + "</td>");  
+//               //    tr.append("<td>" + data[i].createDate+ "</td>");
+//               //    alert("Server said123:\n '" + data[i].orderUuid + "'"); 
+
+//                   $('table').append(tr);
+//               }
+            //  $('#orderTable').dataTable( {
+            //	  "aaSorting": [ [5,'desc'] ],"sPaginationType": "full_numbers"
+             //         		} );
+              
+            },  
+            error: function(e){  
+              alert('Error121212: ' + e);  
+            }  
+            
+            
+            
+          
+            
+            
+      //    });
+        
+    }).done(function(){
+    	
+    //	alert("After content changed");
+    	
+    //	jQuery('#orderStatus').on('input', function() {
+        //  	alert($('#orderStatus').val());
+          // do your stuff
+    //  	}); 
+    	
+    	$("#orderStatus").change(function() {// alert($('#orderStatus').val()); 
+    	corderStatus = $('#orderStatus').val();  });
+    	
+    	
+    });
+        
+    }
+	
+    
+      	     //   $("#orderTable").tablesorter({sortList: [[5,1]]}) 
+      	  //    $("#orderTable").tablesorter({widthFixed: true, widgets: ['zebra']}) 
+      	   //     .tablesorterPager({container: $("#pager")}); 
+      	//    } 
+      	
+    $(function() {
+    	
+    	var gfoodUuid;
+    	var gfoodDisplayName;
+    	var gfoodPrice;
+    	var gRestaurant;
+    	var gQuantity;
+    	
+    	$("#saveOrder").click(function(){
+    		//alert("save Order");
+    		orderJsonObj.orderStatus=$('#orderStatus').val();
+    		orderJsonObj.userData.email=$('#userDataEmail').val();
+    		orderJsonObj.userData.phone=$('#userDataPhone').val();
+    		orderJsonObj.userData.address1=$('#userDataAddress1').val();
+    		orderJsonObj.userData.address2=$('#userDataAddress2').val();
+    		orderJsonObj.userData.zip=$('#userDataZip').val();
+    		orderJsonObj.userData.landmark=$('#userDataLandmark').val();
+    		var currentTime = new Date();
+    		orderJsonObj.updateTs = currentTime;
+    		
+    		
+    		
+    		
+    		for (var i = 0; i < orderJsonObj.foodItems.length; i++) {
+    			orderJsonObj.foodItems[i].quantity	= $('#foodItemsQuantity' + i).val(); 
+    			orderJsonObj.foodItems[i].price	= $('#foodItemsPrice' + i).val();
+    		}
+    		
+    		//alert(gfoodUuid + "Save");
+    		if(typeof gfoodUuid != "undefined")
+    			{
+    			//alert(gfoodUuid + "Inside Save");
+    			    
+    				orderJsonObj['foodItems'].push({
+              	 	 "foodUuid": gfoodUuid,
+             	 	  "displayName": gfoodDisplayName,
+             	 	  "restaurantName": gRestaurant,
+              		  "price": gfoodPrice,
+               	  	  "quantity": gQuantity
+          			  });
+    			}
+    		
+    		 var preTaxAmt = 0;
+    		 for (var i = 0; i < orderJsonObj.foodItems.length; i++) {
+    			 
+    			 preTaxAmt = +preTaxAmt + (+orderJsonObj.foodItems[i].price * +orderJsonObj.foodItems[i].quantity);
+    		 }
+    		// alert("amt" + preTaxAmt);
+    		 orderJsonObj.priceSummaryData.totalWithoutTax = preTaxAmt;
+    		 
+    	//	 var taxAmt1 = Math.round(parseInt(orderJsonObj.priceSummaryData.taxPercent * preTaxAmt) / 100); 
+    	//	 alert("Tax amt1" + taxAmt1);
+    		 var taxAmt = (+orderJsonObj.priceSummaryData.taxPercent * +preTaxAmt)/100;
+    		 orderJsonObj.priceSummaryData.taxAmt = taxAmt;
+    	//	 alert("Tax amt" + taxAmt);
+    		 
+    		 var grandTotalAmt = 0;
+    		 
+    		 if(typeof orderJsonObj.priceSummaryData.deliveryCharge != "undefined")
+    			 {
+    			 grandTotalAmt = +preTaxAmt + +taxAmt;
+    			 }
+    		 if(typeof orderJsonObj.priceSummaryData.otherCharge != "undefined")
+			 {
+			 grandTotalAmt = +grandTotalAmt + +orderJsonObj.priceSummaryData.otherCharge;
+			 }
+    		 
+    		 if(typeof orderJsonObj.priceSummaryData.discountAmt != "undefined")
+			 {
+			 grandTotalAmt = +grandTotalAmt + +orderJsonObj.priceSummaryData.discountAmt;
+			 }
+    		 
+    		 orderJsonObj.priceSummaryData.grandTotal = grandTotalAmt;
+    	//	 alert("Grand amt" + grandTotalAmt);
+    		 
+    		
+    		gfoodUuid="",gfoodDisplayName="",gfoodPrice="",gRestaurant="",gQuantity="";
+    		//Update Amounts Start
+    		
+    		//Update Amounts End
+    		
+    		
+    		//alert(orderJsonObj.orderStatus);
+    		var postData = JSON.stringify(orderJsonObj);
+    		
+    		//alert(postData);
+    		$.ajax({
+    			  url: 'http://1.easysmartfood.appspot.com/order?orderuuid=' + getParameter("orderuuid") ,
+    			  type: 'PUT',
+    			  dataType: "json",
+    			  crossDomain: true,
+    			  contentType: "application/json; charset=utf-8",
+    			  data: postData,
+    			  success: function(data) {
+    			    alert('Order Saved');
+    			    location.reload();
+    			  }
+    			});
+    	    // Do something here!
+    	});
+    	
+    	
+    	$("#addFoodItem").click(function(){
+    		
+    		$("#addFoodItem").attr("disabled","disabled");
+    		tr2 = $('<tr/>');
+            tr2.append("<td>" + "<select id=\"fUuid\" name=\"FoodUuid\"></select>" + "</td>");
+            tr2.append("<td>" + "<select id=\"fOptions\" name=\"Food\"></select>" +  "</td>"); 
+            tr2.append("<td>" + "<select id=\"rOptions\" name=\"Restaurants\"></select>" + "</td>");
+            tr2.append("<td>" + "<select id=\"fPrice\" name=\"FoodPrice\"></select>" + "</td>");
+            tr2.append("<td><input type='text' id='fQuantity' value='" + "1" + "'/></td>");
+            $("#orderTable2").append(tr2);
+    		
+    		 $.ajax({  
+    	            type: "GET",  
+        	              url: "http://1.easysmartfood.appspot.com/restaurant",  
+    	                        dataType: "json",  
+
+    	            success: function(restdata){  
+    	            	
+    	            	
+    	            	var options = $("#rOptions");
+    	        //    	options.append($("<option />").val("Hello"));
+    	            	options.append(new Option("", ""));
+    	            	for (var i = 0; i < restdata.length; i++) {
+    	            //		alert(restdata[i].name);
+    	            		options.append(new Option(restdata[i].name, restdata[i].uuid));
+    	            	//	options.append($("<option />").val(restdata.name));
+    	            	}
+    	            		
+    	            	
+    	            
+    		 		},  
+             		error: function(e){  
+               		  alert('Not able to Fetch restaurants ' + e);  
+            		 }  
+    		
+    		 });
+    	
+    		 
+    		 $("#rOptions").on('change', function (e) {
+    	    	    var optionSelected = $("option:selected", this);
+    	    	    var valueSelected = this.value;
+    	    	    var textSelected   = optionSelected.text();
+    	    	    $('#fOptions')
+    	    	    .find('option')
+    	    	    .remove()
+    	    	    .end()
+    	    	    ;
+    	    	    $('#fUuid')
+    	    	    .find('option')
+    	    	    .remove()
+    	    	    .end()
+    	    	    ;
+    	    	    $('#fPrice')
+    	    	    .find('option')
+    	    	    .remove()
+    	    	    .end()
+    	    	    ;
+    	    	    
+    	    	    $.ajax({  
+        	            type: "GET",  
+            	              url: "http://1.easysmartfood.appspot.com/fooditems/restaurant?restaurantuuid=" + valueSelected,  
+        	                        dataType: "json",  
+
+        	            success: function(fooddata){  
+        	            	
+        	            	
+        	            	var options = $("#fOptions");
+        	            	var optionUuid = $("#fUuid");
+        	            	var optionPrice = $("#fPrice");
+        	            	for (var i = 0; i < fooddata.length; i++) {
+        	            //		alert(restdata[i].name);
+        	            		options.append(new Option(fooddata[i].name, fooddata[i].foodUuid));
+        	            		optionUuid.append(new Option(fooddata[i].foodUuid, fooddata[i].foodUuid));
+        	            		optionPrice.append(new Option(fooddata[i].salePrice, fooddata[i].foodUuid));
+
+        	            	}
+        	            	
+        	            	gfoodDisplayName = $("#fOptions option:selected").text();
+        	            	gfoodUuid = $( "#fUuid option:selected" ).text();
+        	            	gfoodPrice = $( "#fPrice option:selected" ).text();
+        	            	gRestaurant = textSelected;
+        	            	gQuantity = $( "#fQuantity" ).val();
+        	            	
+        	            
+        		 		},  
+                 		error: function(e){  
+                   		  alert('Not able to Fetch Food Items ' + e);  
+                		 }  
+        		
+        		         });
+    	    	    
+    	    	    $("#fOptions").on('change', function (e) {
+    	    	    	$("#fUuid option:selected").attr('disabled','disabled');
+    	    	    	$("#fPrice option:selected").attr('disabled','disabled');
+    	    	    	//$("#rOptions").attr('disabled','disabled');
+    	    	    	$('#fUuid').val( $(this).val() );
+    	    	    	$('#fPrice').val( $(this).val() );
+    	    	    	
+    	    	    	gfoodDisplayName = $("#fOptions option:selected").text();
+    	            	gfoodUuid = $( "#fUuid option:selected" ).text();
+    	            	gfoodPrice = $( "#fPrice option:selected" ).text();
+    	            	gRestaurant = $( "#rOptions option:selected" ).text();
+    	            	gQuantity = $( "#fQuantity" ).val();
+    	           // 	alert(gQuantity + "Change");
+    	    	    	
+    	    	    });
+    	    	    
+    	    	    $("#fQuantity").on('input', function (e) {
+    	    	    	
+    	    	    	gQuantity = $( "#fQuantity" ).val();
+    	    	    
+    	    	    });
+    	    	    
+
+    	         	});
+    	
+    	});
+    	
+    	
+    	
+    	
+    	
+    });
+      	
+    </script>
+
+</body></html>
