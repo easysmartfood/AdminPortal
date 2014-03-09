@@ -100,7 +100,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">EasySmartFood</a>
+          <a class="navbar-brand" href="index.html">EasySmartFood</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -123,9 +123,9 @@
             <li><a href="index.html">Overview</a></li>
             <li><a href="vieworders.html">View Orders</a></li>
             <li><a href="viewrestaurants.html">View Restaurants</a></li>
-            <li><a href="addrestaurant.html">Add Restaurant</a></li>
+            <li class="active"><a href="addrestaurant.html">Add Restaurant</a></li>
             <li><a href="viewfooditems.html">View Food Items</a></li>
-            <li class="active"><a href="addfooditem.html">Add Food Items</a></li>
+            <li><a href="addfooditem.html">Add Food Items</a></li>
             
           </ul>
           <ul class="nav nav-sidebar">
@@ -146,7 +146,7 @@
         
          
 	<div class="row">
-		<h2 class="sub-header1">Add Food Item</h2>
+		<h2 class="sub-header1">Add Restaurant</h2>
 		<div class="row">
   	<!-- 	<div class="col-xs-12 col-md-8"></div>  -->
   	<!--     <div class="col-xs-6 col-md-4"></div> -->
@@ -156,20 +156,21 @@
         
         <div class="badger-left" data-badger="Summary">
          <div class="table-responsive">
-            <button id="saveFoodItem" type="submit" class="btn btn-primary">Save Food Item</button>
-            <table id="foodItemTable" class="table table-striped">
+            <button id="saveRestaurant" type="submit" class="btn btn-primary">Add Restaurant</button>
+            <table id="restaurantTable" class="table table-striped">
               <thead>
                 <tr>
                   <th>Name</th>
                   <th>Visible</th>
                   <th>Featured</th>
-                  <th>Restaurant Name</th>
-                  <th>Sale Price</th>
-                  <th>Min Order Eligible</th>
+                  <th>Region</th>
+                  <th>Sub Region</th>
+                  <th>Cuisine</th>
+                  <th>Popular</th>
                 </tr>
               </thead>
               <tbody>
-         		 <td><input type='text' id='foodName' value=''/></td>
+         		 <td><input type='text' id='restaurantName' value=''/></td>
          		 <td>
          		 <select id='Visible' name="IsVisible">
 					<option value="Yes">Yes</option>
@@ -183,66 +184,20 @@
 				 </select> 
 				 </td>
 				 <td>
-         		 <select id='restaurants' name="Restaurants">
+         		 <select id='region' >
+					<option value="Kaloor">Kaloor</option>
+					<option value="Palarivattom">Palarivattom</option>	
+					<option value="Edapally">Edapally</option>	
+					<option value="Kakkanad">Kakkanad</option>	
+					<option value="Infopark">Infopark</option>
+					<option value="Panampilly Nagar">Panampilly Nagar</option>
+					<option value="Kalamassery">Kalamassery</option>
+					<option value="Thrikakkara">Thrikakkara</option>
+					<option value="Vazhakkala">Vazhakkala</option>
 				 </select> 
 				 </td>
-				 <td><input type='text' id='salePrice' value=''/></td>
-				  <td>
-         		   <select id='MinOrderEligible' name="IsMinOrderEligible">
-					<option value="Yes">Yes</option>
-					<option value="No">No</option>	
-				   </select> 
-				 </td>
-              </tbody>
-            </table>
-          </div>
-        
-		</div>
-
-<div class="badger-right badger-info" data-badger="Cost">
-         <div class="table-responsive">
-            <table id="foodItemTable1" class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Cost Price</th>
-                  <th>Retail Price</th>
-                  <th>Bulk Price</th>
-                  <th>Subscription Price</th>
-                  <th>Min Qty</th>
-                  <th>Max Qty</th>
-                  <th>Bulk Qty</th>
-                  
-                </tr>
-              </thead>
-              <tbody>
-          		<td><input type='text' id='costPrice' value=''/></td>
-          		<td><input type='text' id='retailPrice' value=''/></td>
-          		<td><input type='text' id='bulkPrice' value=''/></td>
-          		<td><input type='text' id='subscriptionPrice' value=''/></td>
-          		<td><input type='text' id='minQty' value=''/></td>
-          		<td><input type='text' id='maxQty' value=''/></td>
-          		<td><input type='text' id='bulkQty' value=''/></td>
-          
-              </tbody>
-            </table>
-          </div>
-</div> 
-
-<div class="badger-left badger-danger" data-badger="Food Details">
-  <div class="table-responsive">
-            <table id="foodItemTable2" class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Cuisine</th>
-                  <th>Food Category</th>
-                  <th>Popular</th>
-                  <th>Food Type</th>
-                  <th>Food Time Category</th>
-                  <th>Primary Image</th>
-                </tr>
-              </thead>
-              <tbody>
-          		<td>
+				 <td><input type='text' id='subRegion' value=''/></td>
+				 <td>
          		 <select id='cuisine' >
 					<option value="Indian">Indian</option>
 					<option value="Chinese">Chinese</option>	
@@ -250,26 +205,79 @@
 					<option value="Malabar">Malabar</option>	
 					<option value="North Indian">North Indian</option>
 					<option value="Western">Western</option>
+					<option value="Multi Cuisine">Multi Cuisine</option>
 				 </select> 
 				 </td>
-          		<td>
-         		 <select id='FoodCategory' >
-					<option value="Veg">Veg</option>
-					<option value="Non Veg">Non Veg</option>	
-					<option value="Beverages">Beverages</option>	
-				 </select> 
-				 </td>
+				 
 				 <td>
          		 <select id='Popular' name="Popular">
 					<option value="Yes">Yes</option>
 					<option value="No">No</option>	
 				 </select> 
 				 </td>
-          		 <td>
-         		 <select id='FoodType' >
-					<option value="Starters">Starters</option>
-					<option value="Main Course">Main Course</option>	
-					<option value="Drinks">Drinks</option>
+				
+              </tbody>
+            </table>
+          </div>
+        
+		</div>
+
+<div class="badger-right badger-info" data-badger="Address">
+         <div class="table-responsive">
+            <table id="foodItemTable1" class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Address Line1</th>
+                  <th>Address Line 2</th>
+                  <th>City</th>
+                  <th>Postal Code</th>       
+                  <th>Phone</th>    
+                  <th>Email</th>    
+
+                  
+                </tr>
+              </thead>
+              <tbody>
+          		<td><input type='text' id='address1' value=''/></td>
+          		<td><input type='text' id='address2' value=''/></td>
+          		<td><input type='text' id='city' value=''/></td>
+          		<td><input type='text' id='zip' value=''/></td>
+          		<td><input type='text' id='phone' value=''/></td>
+          		<td><input type='text' id='email' value=''/></td>
+
+          
+              </tbody>
+            </table>
+          </div>
+</div> 
+
+<div class="badger-left badger-danger" data-badger="Timing">
+  <div class="table-responsive">
+            <table id="foodItemTable2" class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Open Time</th>
+                  <th>Close Time</th>
+                  <th>Holiday</th>
+                  <th>Misc Closed</th>
+                  <th>Food Time Category</th>
+                  <th>Primary Image</th>
+                </tr>
+              </thead>
+              <tbody>
+                <td><input type='text' id='openTime' value=''/></td>
+                <td><input type='text' id='closeTime' value=''/></td>
+          		<td>
+          		
+         		 <select id='holiday' >
+					<option value="None">None</option>
+					<option value="Sunday">Sunday</option>
+				 </select> 
+				 </td>
+				 <td>
+         		 <select id='MiscClosed' name="MiscClosed">
+					<option value="Yes">Yes</option>
+					<option value="No">No</option>	
 				 </select> 
 				 </td>
           		 <td>
@@ -286,7 +294,7 @@
           </div>
 </div>
 
-<div class="badger-right badger-warning" data-badger="Discounts">
+<div class="badger-right badger-warning" data-badger="Discount">
  <div class="table-responsive">
             <table id="foodItemTable3" class="table table-striped">
               <thead>
@@ -295,7 +303,6 @@
                   <th>Discount Code</th>
                   <th>Discount Amt</th>
                   <th>Tax Class</th>
-                  <th>Inventory</th>
                 </tr>
               </thead>
               <tbody>
@@ -307,8 +314,7 @@
 					<option value="default">default</option>
 				 </select> 
 				 </td>
-                  <td><input type='text' id='inventory' value=''/></td>
-              
+
           
               </tbody>
             </table>
@@ -339,11 +345,17 @@
             <table id="foodItemTable5" class="table table-striped">
               <thead>
                 <tr>
+                  
+                  <th>Latitude</th>
+                  <th>Longitude</th>
                   <th>Comments</th>
+                  <th>Reviews</th>
                 </tr>
               </thead>
               <tbody>
           
+                <td><input type='text' id='latitude' value=''/></td>
+          		<td><input type='text' id='longitude' value=''/></td>
               </tbody>
             </table>
           </div>
@@ -432,57 +444,58 @@
     }
     
     $(function() {
-    	$("#saveFoodItem").click(function(){
-    		foodItemJson=new Object();
+    	$("#saveRestaurant").click(function(){
+    		restaurantJson=new Object();
     		var uuid = createGuid();
-    		foodItemJson.foodUuid = uuid;
-    		foodItemJson.name=$('#foodName').val();
-    		foodItemJson.visible=$("#Visible  option:selected").val();
-    		foodItemJson.featured=$('#Featured option:selected').val();
-    		foodItemJson.restaurantUuid=$('#restaurants option:selected').val();
-    		foodItemJson.restaurantName=$('#restaurants option:selected').text();
-    		foodItemJson.salePrice=$('#salePrice').val();
-    		foodItemJson.minOrderEligible=$('#MinOrderEligible option:selected').val();
+    		restaurantJson.uuid = uuid;
+    		restaurantJson.name=$('#restaurantName').val();
+    		restaurantJson.visible=$("#Visible  option:selected").val();
+    		restaurantJson.featured=$('#Featured option:selected').val();
+    		restaurantJson.region=$('#region option:selected').val();
+    		restaurantJson.subRegion=$('#subRegion').val();
+    		restaurantJson.cuisine=$('#cuisine').val();
+    		restaurantJson.popular=$('#Popular').val();
     		
-    		foodItemJson.costPrice=$('#costPrice').val();
-    		foodItemJson.retailPrice=$('#retailPrice').val();
-    		foodItemJson.bulkPrice=$('#bulkPrice').val();
-    		foodItemJson.subscriptionPrice=$('#subscriptionPrice').val();
+    		restaurantJson.address1=$('#address1').val();
+    		restaurantJson.address2=$('#address2').val();
+    		restaurantJson.city=$('#city').val();
+    		restaurantJson.zip=$('#zip').val();
+    		restaurantJson.phone=$('#phone').val();
+    		restaurantJson.email=$('#email').val();
     		
-    		foodItemJson.minQuantity=$('#minQty').val();
-    		foodItemJson.maxQuantity=$('#maxQty').val();
-    		foodItemJson.bulkQuantity=$('#bulkQty').val();
+    		restaurantJson.openTime=$('#openTime').val();
+    		restaurantJson.closeTime=$('#closeTime').val();
+    		restaurantJson.holiday=$('#holiday').val();
+    		restaurantJson.miscClosed=$('#miscClosed').val();
+    		restaurantJson.foodCategory=$('#FoodCategory').val();
+    		restaurantJson.thumbnailImage=$('#thumbnailImage').val();
     		
     		
-    		foodItemJson.cuisine=$('#cuisine').val();
-    		foodItemJson.foodCategory=$('#FoodCategory').val();
-    		foodItemJson.popular=$('#Popular').val();
-    		foodItemJson.foodType=$('#FoodType').val();
-    		foodItemJson.foodTimeCategory=$('#FoodTimeCategory').val();
-    		foodItemJson.thumbnailImage=$('#thumbnailImage').val();
+    		restaurantJson.discountPercent=$('#discountPercent').val();
+    		restaurantJson.discountCode=$('#discountCode').val();
+    		restaurantJson.discountAmt=$('#discountAmt').val();
+    		restaurantJson.taxClass=$('#taxClass').val();
     		
-    		foodItemJson.discountPercent=$('#discountPercent').val();
-    		foodItemJson.discountCode=$('#discountCode').val();
-    		foodItemJson.discountAmt=$('#discountAmt').val();
-    		foodItemJson.taxClass=$('#taxClass').val();
-    		foodItemJson.inventory=$('#inventory').val();
+    		restaurantJson.latitude=$('#latitude').val();
+    		restaurantJson.longitude=$('#longitude').val();
+
     		
-    		var postData = JSON.stringify(foodItemJson);
+    		var postData = JSON.stringify(restaurantJson);
     		
     		//alert(postData);
     		$.ajax({
-    			  url: 'https://api.mongolab.com/api/1/databases/fooditems/collections/fooditems?apiKey=S2fx57xyaqcVRY381V3RjkXo62hw9qbp',
+    			  url: 'https://api.mongolab.com/api/1/databases/restaurant/collections/restaurant?apiKey=S2fx57xyaqcVRY381V3RjkXo62hw9qbp',
     			  type: 'POST',
     			  dataType: "json",
     			  crossDomain: true,
     			  contentType: "application/json; charset=utf-8",
     			  data: postData,
     			  success: function(data) {
-    			    alert('Food Item Saved');
+    			    alert('Restaurant Saved');
     			    location.reload();
     			  }
     			});
-    	//	alert(postData);
+    		alert(postData);
     		
     	});
     });

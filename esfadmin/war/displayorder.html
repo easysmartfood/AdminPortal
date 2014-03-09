@@ -122,8 +122,10 @@
           <ul class="nav nav-sidebar">
             <li><a href="index.html">Overview</a></li>
             <li class="active"><a href="vieworders.html">View Orders</a></li>
-            <li><a href="#">Add an Order</a></li>
-            <li><a href="#">Search Orders</a></li>
+            <li><a href="viewrestaurants.html">View Restaurants</a></li>
+            <li><a href="addrestaurant.html">Add Restaurant</a></li>
+            <li><a href="viewfooditems.html">View Food Items</a></li>
+            <li><a href="addfooditem.html">Add Food Items</a></li>
           </ul>
           <ul class="nav nav-sidebar">
             <li><a href="">Nav item</a></li>
@@ -356,7 +358,13 @@
               var tr;
               tr = $('<tr/>');
                 tr.append("<td>" + orderuuid + "</td>");
-                tr.append("<td><input type='text' id='orderStatus' value='" + data.orderStatus+ "'/></td>");
+            //    tr.append("<td><input type='text' id='orderStatus' value='" + data.orderStatus+ "'/></td>");
+                
+                tr.append("<td> <select id='orderStatus' name=\"orderStatus\">"  + "<option value=\"" + data.orderStatus + "\" selected>" + data.orderStatus  +
+                  		"</option><option value=\"Delivered\">Delivered</option><option value=\"Confirmed with Restaurant\">Confirmed with Restaurant</option><option value=\"Confirmed with Customer\">Confirmed with Customer</option><option value=\"Picked up from Restaurant\">Picked up from Restaurant</option>" +	
+      					"<option value=\"Order Accepted\">Order Accepted</option><option value=\"Agent Assigned\">Agent Assigned</option><option value=\"Invalid\">Invalid</option><option value=\"Cancelled\">Cancelled</option><option value=\"On Hold\">On Hold</option></select> "
+    				 + "</td>");
+                
                 tr.append("<td>" + data.createTs+ "</td>");
                 tr.append("<td>" + data.createdBy+ "</td>");
                 tr.append("<td>" + data.updateTs+ "</td>");

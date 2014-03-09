@@ -123,7 +123,7 @@
             <li><a href="index.html">Overview</a></li>
             <li><a href="vieworders.html">View Orders</a></li>
             <li><a href="viewrestaurants.html">View Restaurants</a></li>
-            <li><a href="#">Add Restaurant</a></li>
+            <li><a href="addrestaurant.html">Add Restaurant</a></li>
             <li class="active"><a href="viewfooditems.html">View Food Items</a></li>
             <li><a href="addfooditem.html">Add Food Items</a></li>
           </ul>
@@ -262,6 +262,8 @@
             <table id="foodItemTable5" class="table table-striped">
               <thead>
                 <tr>
+                 <th>Description</th>
+                 <th>More Description</th>
                  <th>Comments</th>
                 </tr>
               </thead>
@@ -368,7 +370,8 @@
 				 + "</td>");
             //    tr.append("<td>" + data[0].featured + "</td>");
                 tr.append("<td>" + data[0].restaurantUuid + "</td>");
-                tr.append("<td>" + data[0].restaurantName + "</td>");
+                tr.append("<td><input type='text' id='restaurantName' value='" + data[0].restaurantName + "'/></td>");
+        
                 
                 tr.append("<td><input type='text' id='salePrice' value='" + data[0].salePrice + "'/></td>");
          //       tr.append("<td>" + data[0].salePrice + "</td>");
@@ -416,7 +419,7 @@
 				 + "</td>");
             //  tr2.append("<td>" + data[0].popular + "</td>");
             
-              tr2.append("<td> <select id='FoodCategory' name=\"FoodCategory\">"  + "<option value=\"" + data[0].foodType + "\" selected>" + data[0].foodType  +
+              tr2.append("<td> <select id='foodType' name=\"foodType\">"  + "<option value=\"" + data[0].foodType + "\" selected>" + data[0].foodType  +
                 		"</option><option value=\"Starters\">Starters</option><option value=\"Main Course\">Main Course</option><option value=\"Drinks\">Drinks</option>" +	
     					"</select> "
   				 + "</td>");
@@ -451,6 +454,14 @@
              
 
               $("#foodItemTable3").append(tr3);
+              
+              var tr5;
+              tr5 = $('<tr/>');
+              tr5.append("<td><input type='text' id='description' value='" + data[0].description + "'/></td>");
+              tr5.append("<td><input type='text' id='moredescription' value='" + data[0].moredescription + "'/></td>");
+              tr5.append("<td><input type='text' id='comments' value='" + data[0].comments + "'/></td>");
+
+              $("#foodItemTable5").append(tr5);
       
               
               
@@ -502,48 +513,53 @@
     	$("#saveFoodItem").click(function(){
     		
     		foodItemJsonObj.name=$('#foodName').val();
-    		alert($('#foodName').val());
-    		foodItemJsonObj.visible=$('#Visible  option:selected').val();
-    		foodItemJsonObj.featured=$('#Featured option:selected').val();
-    		foodItemJsonObj.salePrice=$('#salePrice').val();
-    		foodItemJsonObj.minOrderEligible=$('#MinOrderEligible option:selected').val();
-    		
+        	//	alert($('#foodName').val());
+        		foodItemJsonObj.visible=$('#Visible  option:selected').val();
+        		foodItemJsonObj.featured=$('#Featured option:selected').val();
+        		foodItemJsonObj.salePrice=$('#salePrice').val();
+        		foodItemJsonObj.restaurantName=$('#restaurantName').val();
+        		foodItemJsonObj.minOrderEligible=$('#MinOrderEligible option:selected').val();
+        		
 
 
-    		
-    		
-    		foodItemJsonObj.cuisine=$('#cuisine').val();
-    		foodItemJsonObj.foodCategory=$('#FoodCategory').val();
-    		foodItemJsonObj.popular=$('#Popular').val();
-    		foodItemJsonObj.foodType=$('#FoodType').val();
-    		foodItemJsonObj.foodTimeCategory=$('#FoodTimeCategory').val();
-    		foodItemJsonObj.thumbnailImage=$('#thumbnailImage').val();
-    		
-    		foodItemJsonObj.discountPercent=$('#discountPercent').val();
-    		foodItemJsonObj.discountCode=$('#discountCode').val();
-    		foodItemJsonObj.discountAmt=$('#discountAmt').val();
-    		foodItemJsonObj.taxClass=$('#taxClass').val();
-    		foodItemJsonObj.inventory=$('#inventory').val();
-    		
-    		var putData = JSON.stringify(foodItemJsonObj);
-    		alert(putData);
-    		
-    		//alert(postData);
-    		$.ajax({
-    			  url: 'https://api.mongolab.com/api/1/databases/fooditems/collections/fooditems?apiKey=S2fx57xyaqcVRY381V3RjkXo62hw9qbp' + "&q={\"foodUuid\":\"" + getParameter("foodUuid") + "\"}",
-    			  type: 'PUT',
-    			  dataType: "json",
-    			  crossDomain: true,
-    			  contentType: "application/json; charset=utf-8",
-    			  data: putData,
-    			  success: function(data) {
-    			    alert('Food Item Update Saved');
-    			    location.reload();
-    			  }
-    			});
-    		alert(postData);
-    		
-    	});
+        		
+        		
+        		foodItemJsonObj.cuisine=$('#cuisine').val();
+        		foodItemJsonObj.foodCategory=$('#FoodCategory').val();
+        		foodItemJsonObj.popular=$('#Popular').val();
+        		foodItemJsonObj.foodType=$('#foodType').val();
+        		foodItemJsonObj.foodTimeCategory=$('#FoodTimeCategory').val();
+        		foodItemJsonObj.thumbnailImage=$('#thumbnailImage').val();
+        		
+        		foodItemJsonObj.discountPercent=$('#discountPercent').val();
+        		foodItemJsonObj.discountCode=$('#discountCode').val();
+        		foodItemJsonObj.discountAmt=$('#discountAmt').val();
+        		foodItemJsonObj.taxClass=$('#taxClass').val();
+        		foodItemJsonObj.inventory=$('#inventory').val();
+        		
+        		foodItemJsonObj.description=$('#description').val();
+        		foodItemJsonObj.moredescription=$('#moredescription').val();
+        		foodItemJsonObj.comments=$('#comments').val();
+        		
+        		var putData = JSON.stringify(foodItemJsonObj);
+        	//	alert(putData);
+        		
+        		//alert(postData);
+        		$.ajax({
+        			  url: 'https://api.mongolab.com/api/1/databases/fooditems/collections/fooditems?apiKey=S2fx57xyaqcVRY381V3RjkXo62hw9qbp' + "&q={\"foodUuid\":\"" + getParameter("foodUuid") + "\"}",
+        			  type: 'PUT',
+        			  dataType: "json",
+        			  crossDomain: true,
+        			  contentType: "application/json; charset=utf-8",
+        			  data: putData,
+        			  success: function(data) {
+        			    alert('Food Item Update Saved');
+        			    location.reload();
+        			  }
+        			});
+        		//alert(postData);
+        		
+        	});
     		
     	});
     	

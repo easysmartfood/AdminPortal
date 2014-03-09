@@ -42,7 +42,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">EasySmartFood</a>
+          <a class="navbar-brand" href="index.html">EasySmartFood</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -63,9 +63,11 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <li><a href="index.html">Overview</a></li>
-            <li class="active"><a href="vieworders.html">View Orders</a></li>
-            <li><a href="#">Add an Order</a></li>
-            <li><a href="#">Search Orders</a></li>
+            <li><a href="vieworders.html">View Orders</a></li>
+            <li class="active"><a href="viewrestaurants.html">View Restaurants</a></li>
+            <li><a href="addrestaurant.html">Add Restaurant</a></li>
+            <li><a href="viewfooditems.html">View Food Items</a></li>
+            <li><a href="addfooditem.html">Add Food Items</a></li>
           </ul>
           <ul class="nav nav-sidebar">
             <li><a href="">Nav item</a></li>
@@ -134,7 +136,7 @@
           var tr;
           for (var i = 0; i < data.length; i++) {
               tr = $('<tr/>');
-              tr.append("<td>" + "<a href=" + "\"" + "\\displayrestaurant.html?fooduuid=" + data[i].uuid  + "\">" + data[i].uuid + "</a>" + "</td>");
+              tr.append("<td>" + "<a href=" + "\"" + "\\displayrestaurant.html?restaurantuuid=" + data[i].uuid  + "\">" + data[i].uuid + "</a>" + "</td>");
               tr.append("<td>" + data[i].name + "</td>");
               tr.append("<td>" + data[i].region+ "</td>");
               tr.append("<td>" + data[i].subRegion+ "</td>");
